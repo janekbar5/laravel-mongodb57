@@ -35,7 +35,7 @@ class BooksController extends Controller
     {
         //$books = Book::all();
 	//$books = Book::with('bookHasCategory')->get();
-	$books = Book::paginate(10);
+	$books = Book::where('user_id','=', \Auth::user()->id)->paginate(10);
         //$categories = $this->getCategories();
         return view('backend.books.index',compact('books'));
         //return view('books.index',compact('books'))->with('i', (request()->input('page', 1) - 1) * 5);
@@ -59,8 +59,16 @@ class BooksController extends Controller
             'detail' => 'required',
             'category_id' => 'required',
             'tags' => 'required',
-        ]);   
+        ]);  
+       
+        
+        
+       
+        
         $book = Book::create($request->all());
+        $book->user_id = \Auth::user()->id;
+        $book->update();
+        
         $book->tags()->sync($request->Input('tags'));
         //return redirect()->route('books.index')->with('success','Book created successfully.');
         Session::flash('alert-success', 'Record created successfully');

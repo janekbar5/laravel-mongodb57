@@ -100,7 +100,7 @@
                 
 	        <td>
                    <form action="{{ route('backend.books.destroy',$book->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('backend.books.show',$book->id) }}">Show</a>
+                    
                     <a class="btn btn-primary" href="{{ route('backend.books.edit',$book->id) }}">Edit</a>
                     @csrf
                     @method('DELETE')
