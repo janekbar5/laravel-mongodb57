@@ -215,17 +215,25 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                 @if(Auth::user()->bio_file)
+                 
+                 <img src="{{ url('/') }}/uploads/{{Auth::user()->bio_file}}" class="user-image" >
+                
+                 @endif
+             
+              
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
+                
+                 @if(Auth::user()->bio_file)
+                 <img src="{{ url('/') }}/uploads/{{Auth::user()->bio_file}}" class="user-image" >
+                 @endif
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{ Auth::user()->name }} - Web Developer
+                  <small>Member since Nov. {{ Auth::user()->created_at }}</small>
 				  
                 </p>
               </li>
@@ -247,7 +255,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('user.profile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   

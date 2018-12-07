@@ -1,0 +1,22 @@
+///////////////////////////////done:
+-Rback (user access)
+-multiple img upload
+-simple crude
+-multiple tags (only existed)
+-user profile img
+///////////////////////////////todo:
+
+-delete user synch permissin 
+-delete book synch tag
+-email confirmation
+-cascading dd
+-use resources in routes
+-RBACK on controller level
+-instant search
+-post array (invoice)
+-multiple tags (existed + new)
+-radius search old style sql
+-radius search modern style sql
+-social login
+-payment stripe
+-ssl

@@ -23,6 +23,8 @@ Route::get('/createadmin', 'HomeController@createAdmin')->name('createadmin');
 Route::get('/createeditor', 'HomeController@createEditor')->name('createeditor');
 
 
+Route::get('/profile',   'UserController@getUserProfile')->name('user.profile');
+Route::post('/postprofile',   'UserController@postUserProfile')->name('user.postprofile');
 
 Route::get('/getuserslist',   'UserController@getUsersList')->name('users.list');
 Route::get('/edituser?{$id}', 'UserController@editUser')->name('user.edituser');

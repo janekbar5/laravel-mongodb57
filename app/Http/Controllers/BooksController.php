@@ -33,13 +33,10 @@ class BooksController extends Controller
      
     public function index()
     {
-        //$books = Book::all();
-	//$books = Book::with('bookHasCategory')->get();
-	$books = Book::where('user_id','=', \Auth::user()->id)->paginate(10);
-        //$categories = $this->getCategories();
+        
+	$books = Book::where('user_id','=', \Auth::user()->id)->paginate(10);       
         return view('backend.books.index',compact('books'));
-        //return view('books.index',compact('books'))->with('i', (request()->input('page', 1) - 1) * 5);
-			//return 'rrrrrrrrrrrrrrrrr';
+        
     }
 
 
