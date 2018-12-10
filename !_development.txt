@@ -4,12 +4,14 @@
 -simple crude
 -multiple tags (only existed)
 -user profile img
+-cascading dd
+-ajax form validation
 ///////////////////////////////todo:
 
 -delete user synch permissin 
 -delete book synch tag
 -email confirmation
--cascading dd
+
 -use resources in routes
 -RBACK on controller level
 -instant search

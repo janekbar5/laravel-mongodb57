@@ -1,17 +1,14 @@
 <?php
 
-
 namespace App;
-
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Category;
 
-class Book extends Eloquent
-{
-	protected $connection = 'mongodb';
-	protected $collection = 'books';
+class Book extends Eloquent {
 
+    protected $connection = 'mongodb';
+    protected $collection = 'books';
 
     /**
      * The attributes that are mass assignable.
@@ -19,78 +16,64 @@ class Book extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'name','category_id', 'detail'
+        'name', 'category_id', 'detail'
     ];
-	
-    public function category()
-    {
-        return $this->belongsTo('App\Category','category_id');
+
+    public function category() {
+        return $this->belongsTo('App\Category', 'category_id');
     }
 
-	public function tags()
-    {
+    public function tags() {
         //return $this->belongsToMany('App\Vehicle','vehicle_tag','vehicle_id','tag_id');
-	return $this->belongsToMany('App\Tag', null, 'book_ids', 'tag_ids');
+        return $this->belongsToMany('App\Tag', null, 'book_ids', 'tag_ids');
     }
-	
-	
-	
-	
-	
-    public function getCategory($id)
-    {
-	//return $this->categoryObject->getCategory($id);
-	return Category::find($id);	
+
+    public function make() {
+        return $this->belongsTo('App\Make', 'make_id');
     }
-	
-	
-    public function images()
-    {
-     return $this->hasMany('App\Image');
+
+    public function model() {
+        return $this->belongsTo('App\Modell', 'model_id');
     }
-	
-    public function imagesFront()
-    {	
+
+    public function getCategory($id) {
+        //return $this->categoryObject->getCategory($id);
+        return Category::find($id);
+    }
+
+    public function images() {
+        return $this->hasMany('App\Image');
+    }
+
+    public function imagesFront() {
         return $this->hasMany('App\Image')->orderBy('image_order')->limit(1);
-      
-        
+
+
         //dd($janek);
         //echo $janek->_id;
         /*
-        if($this->hasMany('App\Image')->exists()){
-            $img = $this->hasMany('App\Image')->orderBy('image_order')->limit(1);
-            $photo = '<img src="'.$img->file_path.'" style="width:100px"/>';
-        }else{
-            $photo = '<img src="http://placehold.it/50x50" width="100"/>';
-        }
-       echo $photo; 
+          if($this->hasMany('App\Image')->exists()){
+          $img = $this->hasMany('App\Image')->orderBy('image_order')->limit(1);
+          $photo = '<img src="'.$img->file_path.'" style="width:100px"/>';
+          }else{
+          $photo = '<img src="http://placehold.it/50x50" width="100"/>';
+          }
+          echo $photo;
          * 
          * 
-         */  
+         */
         /*
-        if (is_object($record->poster)) {
-            //echo 'object';
-                    $photo = $this->hasMany('App\Image')->orderBy('image_order')->limit(1);
-        }else{
-                    $photo = 'http://placehold.it/50x50';
-        }
+          if (is_object($record->poster)) {
+          //echo 'object';
+          $photo = $this->hasMany('App\Image')->orderBy('image_order')->limit(1);
+          }else{
+          $photo = 'http://placehold.it/50x50';
+          }
          * */
-         
-    }    
-	
-    public function imagesBack()
-    {	
-    return $this->hasMany('App\Image')->orderBy('image_order');		
     }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+    public function imagesBack() {
+        return $this->hasMany('App\Image')->orderBy('image_order');
+    }
+
 }

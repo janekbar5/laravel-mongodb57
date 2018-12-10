@@ -8,37 +8,37 @@
 
 
 
-    <style>
-        .delete-img{
-            width:30px;
-            position:absolute;
-            top:0px;
-            left:70px;
+<style>
+    .delete-img{
+        width:30px;
+        position:absolute;
+        top:0px;
+        left:70px;
 
-            cursor:pointer;
-            z-index: 1000;
-        }
-        #gallery-images ul li {
-            position:relative;
-            list-style:none;
-            width:auto;
-            float:left;
-            border:solid 1px red;
-        }
+        cursor:pointer;
+        z-index: 1000;
+    }
+    #gallery-images ul li {
+        position:relative;
+        list-style:none;
+        width:auto;
+        float:left;
+        border:solid 1px red;
+    }
 
-        #gallery-images ul li a img{
-            float:left;
-            width:100px;
-        }
+    #gallery-images ul li a img{
+        float:left;
+        width:100px;
+    }
 
-        #gallery-images ul li a:hover{
-            cursor: move;
-        }
-    </style>
+    #gallery-images ul li a:hover{
+        cursor: move;
+    }
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    
+
 
 <script>
 
@@ -139,11 +139,11 @@ $(document).ready(function () {
 
 });
 
-    </script>	
-    
-    
-    
-    
+</script>	
+
+
+
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -160,14 +160,14 @@ $(document).ready(function () {
         </ol>
     </section>
 
-    
+
     <div class="flash-message">
-    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-      @if(Session::has('alert-' . $msg))
-      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-      @endif
-    @endforeach
-  </div> 
+        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+        @if(Session::has('alert-' . $msg))
+        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+        @endif
+        @endforeach
+    </div> 
 
     <section class="content">
         <div class="row">
@@ -256,23 +256,26 @@ $(document).ready(function () {
                                 </select>                
                             </div>
 
+
                             
-                           
 
 
-                           <div class="form-group">
-                        <label for="City">Choose Category</label>
-                        <select name="category_id" class="form-control">
 
-                            @if (isset($categories))
-                            <option value ="">Choose Category</option>  
-                            @foreach ($categories as $cat)
-                            <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
 
-                            @endforeach
-                            @endif
-                        </select>
-                    </div>  
+
+                            <div class="form-group">
+                                <label for="City">Choose Category</label>
+                                <select name="category_id" class="form-control">
+
+                                    @if (isset($categories))
+                                    <option value ="">Choose Category</option>  
+                                    @foreach ($categories as $cat)
+                                    <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
+
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>  
 
 
                         </div>
@@ -299,64 +302,63 @@ $(document).ready(function () {
 
 
 
-    
-    
-    
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>	
-<script>
-$(document).ready(function() {
-	$('#make_id').on('change', function(){
-	$.post('/model/getmodel', 
-	{
-	_token:$('#token').val(),	
-	//type: 'make_id', 
-	make_id: $('#make_id').val(),
-	
-	}, 
-    
-	function(data){
-	            $('#model_id').html(data);
-	        });
-	       
-	    });	
-          
-	});         
-	
-	
-	
-</script>
-    
-    
-    
-@include('backend.partial.footer')
-@include('backend.partial.rightsidebar')
-
-<!-- jQuery 3 -->
-<script src="{{ asset('backend/bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('backend/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- Select2 -->
-<script src="{{ asset('backend/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 
 
 
-<script src="{{ asset('backend/plugins/iCheck/icheck.min.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ asset('backend/bower_components/fastclick/lib/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('backend/dist/js/demo.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>	
+    <script>
+$(document).ready(function () {
+    $('#make_id').on('change', function () {
+        $.post('/model/getmodel',
+                {
+                    _token: $('#token').val(),
+                    //type: 'make_id', 
+                    make_id: $('#make_id').val(),
+
+                },
+                function (data) {
+                    $('#model_id').html(data);
+                });
+
+    });
+
+});
+
+
+
+    </script>
+
+
+
+    @include('backend.partial.footer')
+    @include('backend.partial.rightsidebar')
+
+    <!-- jQuery 3 -->
+    <script src="{{ asset('backend/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('backend/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('backend/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+
+
+
+    <script src="{{ asset('backend/plugins/iCheck/icheck.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('backend/bower_components/fastclick/lib/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 
 
 
 
-<script>
+    <script>
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
 
 })
 
-</script>
+    </script>
     @endsection

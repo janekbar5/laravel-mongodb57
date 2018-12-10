@@ -32,6 +32,7 @@
             
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('backend.books.create') }}"> Create New Book</a>
+                <a class="btn btn-success" href="{{ route('backend.books.create.ajax') }}"> Create New Book Ajax</a>
             </div>
         </div>
     </div>
@@ -84,7 +85,7 @@
                     @endif
                                         
                 </td>
-	        <td>{{ $book->name }}</td>
+	        <td>{{ $book->title }}</td>
 	       
 		<td>{{ $book->category()->first()->name }}</td>
                 
@@ -102,6 +103,7 @@
                    <form action="{{ route('backend.books.destroy',$book->id) }}" method="POST">
                     
                     <a class="btn btn-primary" href="{{ route('backend.books.edit',$book->id) }}">Edit</a>
+                     <a class="btn btn-primary" href="{{ route('backend.books.edit.ajax',$book->id) }}">Edit Ajax</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -131,15 +133,15 @@
   
 <!-- jQuery 3 -->
 <script src="{{ asset('backend/bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
+
 <script src="{{ asset('backend/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- Slimscroll -->
+
 <script src="{{ asset('backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-<!-- FastClick -->
+
 <script src="{{ asset('backend/bower_components/fastclick/lib/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
+>
 <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
+
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 
 

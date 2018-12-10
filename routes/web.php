@@ -42,6 +42,16 @@ Route::get('books/edit/{id}', 'BooksController@edit')->name('backend.books.edit'
 Route::post('books/edit/{id}', 'BooksController@update')->name('backend.books.update');
 Route::post('books/delete/{id}', 'BooksController@destroy')->name('backend.books.destroy');
 Route::delete('books/delete/{id}', 'BooksController@destroy')->name('backend.books.destroy');
+
+
+Route::post('books/store_ajax', 'BooksController@storeAjax')->name('backend.books.store.ajax');
+Route::get('books/edit_ajax/{id}', 'BooksController@editAjax')->name('backend.books.edit.ajax');
+
+Route::get('books/create_ajax', 'BooksController@createAjax')->name('backend.books.create.ajax');
+Route::post('books/create_ajax', 'BooksController@createAjaxPost')->name('backend.books.create.ajaxpost');
+
+//Route::get('books/create_ajax', 'BooksController@createAjax')->name('backend.books.create.ajax');
+//Route::post('books/create_ajax', 'BooksController@createAjaxPost')->name('backend.books.create.ajaxpost');
 /////////////////////////////////
 Route::get('categories/index', 'CategoriesController@index')->name('categories.index');
 Route::get('categories/create', 'CategoriesController@create')->name('categories.create');
@@ -52,6 +62,7 @@ Route::post('categories/edit/{id}', 'CategoriesController@update')->name('catego
 Route::get('categories/show/{id}', 'CategoriesController@show')->name('categories.show');
 Route::delete('categories/delete/{id}', 'CategoriesController@destroy')->name('categories.destroy');
 //////////////////////////////////
+Route::post('model/getmodel', 'ModelsController@getModelsAjax')->name('models.index');
 /////////////////////////////////
 Route::get('tags/index', 'TagsController@index')->name('tags.index');
 Route::get('tags/create', 'TagsController@create')->name('tags.create');
