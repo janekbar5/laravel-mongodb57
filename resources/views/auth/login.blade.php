@@ -11,7 +11,7 @@
         
         
         <div class="login-box-body">
-            ////////////////////////////////////////////////////////////////
+            
              @if(Session::has('danger'))  
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -56,7 +56,7 @@
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{ Session('status') }}
             </div>
             @endif
-            ////////////////////////////////////////////////////////////////
+            
             <p class="login-box-msg">Sign in to start your session</p>
 
             

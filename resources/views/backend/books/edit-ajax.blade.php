@@ -260,7 +260,8 @@ $(document).ready(function () {
                                     @foreach($tags as $tag)
                                     <option value="{{$tag->id}}" @foreach($book->tags()->get() as $p) @if($tag->id == $p->id)selected="selected"@endif @endforeach>{{$tag->title}}</option>
                                     @endforeach
-                                </select>                
+                                </select> 
+                                <span class="text-danger"><strong id="tags-error"></strong></span>
                             </div>
 
                             
@@ -317,7 +318,6 @@ $(document).ready(function () {
                             <option value ="">Choose Category</option>  
                             @foreach ($categories as $cat)
                             <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
-
                             @endforeach
                             @endif
                         </select>

@@ -47,7 +47,7 @@ $('#submitForm').on('click', function () {
                 if (data.errors.tags) {
                     $('#tags-error').html('<div class="alert alert-danger alert-dismissible">' + data.errors.tags[0] + '</div>');
                 }
-                 if (data.errors.tags) {
+                 if (data.errors.category_id) {
                     $('#category_id-error').html('<div class="alert alert-danger alert-dismissible">' + data.errors.category_id[0] + '</div>');
                 }
             }
@@ -89,7 +89,7 @@ $('#submitForm2').on('click', function(){
                 if (data.errors.tags) {
                     $('#tags-error').html('<div class="alert alert-danger alert-dismissible">' + data.errors.tags[0] + '</div>');
                 }
-                 if (data.errors.tags) {
+                 if (data.errors.category_id) {
                     $('#category_id-error').html('<div class="alert alert-danger alert-dismissible">' + data.errors.category_id[0] + '</div>');
                 }
             }
