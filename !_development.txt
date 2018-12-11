@@ -6,11 +6,14 @@
 -user profile img
 -cascading dd
 -ajax form validation
+-email confirmation
+
+
 ///////////////////////////////todo:
 
 -delete user synch permissin 
 -delete book synch tag
--email confirmation
+
 
 -use resources in routes
 -RBACK on controller level
@@ -20,5 +23,6 @@
 -radius search old style sql
 -radius search modern style sql
 -social login
--payment stripe
+-payment stripe 
 -ssl
+-social logins
