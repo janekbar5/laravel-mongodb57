@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\VerifyUser;
+use App\Mail\VerifyMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -76,11 +79,46 @@ class RegisterController extends Controller
                     'email' => $data['email'],
                     'password' => bcrypt($data['password']),
         ]);
+		
+		$verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
 
         $user->assignRole('writer');
+		
+		Mail::to($user->email)->send(new VerifyMail($user));
+		
         return $user;
 		
 		
 		
     }
+	
+	
+	public function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $verifyUser->user->verified = 1;
+                $verifyUser->user->save();
+                $warning = "Your e-mail is verified. You can now login.";
+            }else{
+                $warning = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+        }
+
+        return redirect('/login')->with('warning', $warning);
+    }
+	
+    
+    
+    
+    
+	
+	
 }
