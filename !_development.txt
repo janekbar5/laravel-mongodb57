@@ -10,19 +10,26 @@
 
 
 ///////////////////////////////todo:
+-instant search
+https://appdividend.com/2018/04/27/laravel-typeahead-search-tutorial-with-example/
+https://scotch.io/tutorials/build-search-functionality-with-laravel-scout-and-vue-js
+https://www.cloudways.com/blog/live-search-laravel-ajax/
+https://www.sitepoint.com/build-lyrics-website-laravel-scout-algolia/
+https://www.codementor.io/php/tutorial/how-to-build-a-search-engine-algolia
+
+-radius search old style sql
+-radius search modern style sql
+
 
 -delete user synch permissin 
 -delete book synch tag
-
-
 -use resources in routes
 -RBACK on controller level
--instant search
+
 -post array (invoice)
 -multiple tags (existed + new)
--radius search old style sql
--radius search modern style sql
 -social login
 -payment stripe 
 -ssl
+-S3 images
 -social logins

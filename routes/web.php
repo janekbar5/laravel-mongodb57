@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/createwriter', 'HomeController@createWriter')->name('createwriter');
 Route::get('/createadmin', 'HomeController@createAdmin')->name('createadmin');
 Route::get('/createeditor', 'HomeController@createEditor')->name('createeditor');
+Route::get('/radiussearch', 'HomeController@radiusSearch')->name('radiussearch');
+
 
 
 Route::get('/profile',   'UserController@getUserProfile')->name('user.profile');

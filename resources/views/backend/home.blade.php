@@ -63,15 +63,17 @@
 
  <br><br>   
 	
-	
-	getRoleNames {{ Auth::user()->getRoleNames() }}<br>
-    pluck {{ Auth::user()->roles->pluck('name') }}<br>
-	
+	@if (Auth::check())
+            getRoleNames {{ Auth::user()->getRoleNames() }}<br>
+            pluck {{ Auth::user()->roles->pluck('name') }}<br>
 
-	@foreach(Auth::user()->getRoleNames() as $userrole)
-           --{{$userrole}}
-	@endforeach 
 
+            @foreach(Auth::user()->getRoleNames() as $userrole)
+               --{{$userrole}}
+            @endforeach 
+        @else
+            //show logged out navbar
+        @endif
 
     
 
