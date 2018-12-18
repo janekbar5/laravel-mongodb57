@@ -167,7 +167,7 @@ class BooksController extends Controller
     
     
     
-
+    
     public function storeAjax(Request $request) {
        //dd($request->all());
 
@@ -175,7 +175,10 @@ class BooksController extends Controller
 
         if ($formValidator->passes()) {
             $book = Book::find($request->input('id'));
-            $book->update($request->all());            
+            $book->location = ['type' => 'Point', 'coordinates' => [$request->input('lng'), $request->input('lat')]];
+            $book->title = $request->input('title');
+            $book->save($request->all());   
+            
             $book->tags()->sync($request->Input('tags'));
             
             return Response::json(['success' => '1']);

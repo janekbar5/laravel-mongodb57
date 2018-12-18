@@ -179,6 +179,7 @@ $(document).ready(function () {
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Quick Example</h3>
+                        Click here, 
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -241,12 +242,23 @@ $(document).ready(function () {
 
 
                             <div class="form-group">
-                                <strong>Name:</strong>
-                                
+                                <strong>Title:</strong>                                
                                 <input type="text" class="form-control" id="title" name="title" value="{{ $book->title }}" placeholder="Diaplayed name">
                                  <span class="text-danger"><strong id="title-error"></strong></span>
                             </div>
 
+                            
+                            <div class="form-group">
+                                <strong>Lat:</strong>                                
+                                <input type="text" class="form-control" id="lat" name="lat" value="{{ $book['location']['coordinates']['0'] }}" placeholder="Diaplayed name">
+                                 <span class="text-danger"><strong id="title-error"></strong></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <strong>Lng:</strong>                                
+                                <input type="text" class="form-control" id="lng" name="lng" value="{{ $book['location']['coordinates']['1'] }}" placeholder="Diaplayed name">
+                                 <span class="text-danger"><strong id="title-error"></strong></span>
+                            </div>
 
 
                             <div class="form-group">

@@ -92,9 +92,7 @@
                 <td>
                     @foreach ($book->tags()->get() as $tag)
                     {{$tag->title}}
-                    @endforeach  
-                    
-                    
+                    @endforeach      
                     
                    
                 </td>

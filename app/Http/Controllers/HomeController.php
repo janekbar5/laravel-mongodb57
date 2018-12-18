@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Postcode;
-use Illuminate\Http\Request;
+use App\Book;
+//use Illuminate\Http\Request;
 use Maklad\Permission\Models\Role;
 use Maklad\Permission\Models\Permission;
 use DB;
-
 
 class HomeController extends Controller {
 
@@ -47,7 +47,7 @@ class HomeController extends Controller {
         echo 'done';
     }
 
-    public function scopeDistance($query, $lat=51.747829, $lng=-0.301865, $radius = 100, $unit = "km") {
+    public function scopeDistance($query, $lat = 51.747829, $lng = -0.301865, $radius = 100, $unit = "km") {
         $unit = ($unit === "km") ? 6378.10 : 3963.17;
         $lat = (float) $lat;
         $lng = (float) $lng;
@@ -62,20 +62,140 @@ class HomeController extends Controller {
                         )->orderBy('distance', 'asc');
     }
 
+    
+    
+    
+    
+    
     public function radiusSearch() {
-        $lat = 51.747829;
-        $lon = -0.301865; 
-        $radius = 5;
+
+        //ok
+        //$locations = DB::collection('postcodes')->where('Location2', 'Cunningham')->get();
+        //ok
+        /*
+          $locations = DB::collection('postcodes')
+          //->where('Location2', 'Cunningham')
+          ->having('Location2', 'LIKE', '%'.$radius.'%')
+          ->get();
+         */
+
         
-       $locations = DB::collection('postcodes')->where('Location2', 'Cunningham')->get();
+        $latitude = 50.730733;
+        $longitude = -1.860970;
+        
+        /*
+        $locations = Postcode::where('location', 'near', [
+                '$geometry' => [
+                'type' => 'Point',
+                    'coordinates' => [-1.860970, 50.730733]
+                ],
+                '$maxDistance' => 5,
+        ])->paginate(5);
+        */
+        $locations2 = Postcode::where('location', 'near', [
+	'$geometry' => [
+        'type' => 'Point',
+	    'coordinates' => [
+	        -1.860970,
+                50.730733,
+                ],
+            ],
+            '$maxDistance' => 500,
+        ])->get();
+     
+        /*
+        $locations  = Postcode::where('address', 'geoWithin', [
+            '$centerSphere' => [
+                [
+                    -0.301865,
+                    51.5069158,
+                ],
+                50 / 3963.2 // 50 mile (3963.2 = equatorial radius of the earth)
+            ]
+        ])->paginate(12);
+        
+        
+        $locations2  = Postcode::raw()->find(array('location_coordinates' => array('$near' => array($longitude, $latitude))));
+        */
+
+        
+         
+          dd($locations2);
+         
+        /*
+          $locations  = DB::collection('postcodes')
+
+          ->select('postcodes.id', 'title', 'city', 'price', 'postedat',
+          ( '3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(-122) )
+          + sin( radians(37) ) * sin( radians( lat ) ) ) as distance') )
+
+
+
+
+
+          ->having('distance', '<', $radius)
+          ->orderBy('distance', 'desc')
+          ->get();
+         */
 
         //dd($locations);
 
+        /*
+          $locations = DB::collection('postcodes')
+          ->select("*,
+          ($unit * ACOS(COS(RADIANS($lat))
+         * COS(RADIANS(Lat))
+         * COS(RADIANS($lng) - RADIANS(Long))
+          + SIN(RADIANS($lat))
+         * SIN(RADIANS(Lat)))) AS distance"
+          )
+          ->having('postcodes', '<=', $radius)
+          ->get();
+         */
 
+
+        //$locations = DB::collection('postcodes')->select(' ( 3959 * acos( cos( radians(' . $lat . ') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(' . $lng . ') ) + sin( radians(' . $lat .') ) * sin( radians( lat ) ) ) ) AS distance  HAVING distance < ' . $distance . '' );
+
+        /*
+          $locations = DB::collection('postcodes')
+          ->select('( 3959 * acos( cos( radians(?) ) *
+          cos( radians( lat ) )
+         * cos( radians( lng ) - radians(?)
+          ) + sin( radians(?) ) *
+          sin( radians( lat ) ) )
+          ) AS distance', [$lat, $lng, $lat])
+          //->having("distance < ?", [$radius])
+          ->get();
+         */
+        // dd($locations);
+
+
+        /*
+          $latitude = 51.747829;
+          $longitude = -0.301865;
+
+          $upper_latitude = $latitude + (.50); //Change .50 to small values
+          $lower_latitude = $latitude - (.50); //Change .50 to small values
+          $upper_longitude = $longitude + (.50); //Change .50 to small values
+          $lower_longitude = $longitude - (.50); //Change .50 to small values
+
+          $locations = \DB::collection('postcodes')
+          ->whereBetween('geo_locations.latitude', [$lower_latitude, $upper_latitude])
+          ->whereBetween('geo_locations.logitude', [$lower_longitude, $upper_longitude])
+          ->get();
+         */
+
+
+        /*
+          $locations = DB::collection('postcodes')
+          ->select('* where Postcode result')
+          ->get();
+         */
+
+
+        // dd( $locations);
 
         return view('radius', compact('locations'));
     }
-
-    
 
 }

@@ -14,14 +14,12 @@
 				@endrole
 				
 				<br><br>
-				
-                                @foreach ($locations as $loc)
-                                {{$loc['Postcode']}} <br>
-                                @endforeach
                                 
-                                
-                                
-                                
+
+				{{ dd($locations ) }}
+                               
+                             
+ 
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
