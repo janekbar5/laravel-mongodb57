@@ -62,11 +62,6 @@ class HomeController extends Controller {
                         )->orderBy('distance', 'asc');
     }
 
-    
-    
-    
-    
-    
     public function radiusSearch() {
 
         //ok
@@ -79,49 +74,78 @@ class HomeController extends Controller {
           ->get();
          */
 
-        
+
         $latitude = 50.730733;
         $longitude = -1.860970;
-        
+
         /*
-        $locations = Postcode::where('location', 'near', [
-                '$geometry' => [
-                'type' => 'Point',
-                    'coordinates' => [-1.860970, 50.730733]
-                ],
-                '$maxDistance' => 5,
-        ])->paginate(5);
-        */
-        $locations2 = Postcode::where('location', 'near', [
+          $locations = Postcode::where('location', 'near', [
+          '$geometry' => [
+          'type' => 'Point',
+          'coordinates' => [-1.860970, 50.730733]
+          ],
+          '$maxDistance' => 5,
+          ])->paginate(5);
+         */
+
+
+
+        /*
+          $locations2 = Book::where('location', 'geoWithin', [
+          '$center' => [
+          'type' => 'Point',
+          'coordinates' => [-1.850970,50.730733],
+          ],
+          '$maxDistance' => 5,
+          ])->get();
+
+         */
+
+       //10000 Bournemouth + Poole
+       //15000 Bournemouth + Poole + Ringwood
+       //32000 Bournemouth + Poole + Ringwood + Beaulieu,
+       //45000 Bournemouth + Poole + Ringwood + Beaulieu + Southampton ,
+        
+       $radius = 65000;
+       $locations = Book::where('location', 'near', [
 	'$geometry' => [
         'type' => 'Point',
-	    'coordinates' => [
-	        -1.860970,
-                50.730733,
-                ],
+	    'coordinates' => [-1.879586,50.742362 ],
             ],
-            '$maxDistance' => 500,
+            '$maxDistance' => $radius,
         ])->get();
-     
-        /*
-        $locations  = Postcode::where('address', 'geoWithin', [
-            '$centerSphere' => [
-                [
-                    -0.301865,
-                    51.5069158,
-                ],
-                50 / 3963.2 // 50 mile (3963.2 = equatorial radius of the earth)
-            ]
-        ])->paginate(12);
-        
-        
-        $locations2  = Postcode::raw()->find(array('location_coordinates' => array('$near' => array($longitude, $latitude))));
-        */
 
-        
-         
-          dd($locations2);
-         
+
+        //dd($locations3);
+        /*
+          $locations3 =  Book::whereRaw([
+          'location' => [
+          '$near' => [-1.850970,50.730733],
+          '$maxDistance' => 5,
+          ],
+          ])->get();
+         */
+
+
+        /*
+          $locations  = Postcode::where('address', 'geoWithin', [
+          '$centerSphere' => [
+          [
+          -0.301865,
+          51.5069158,
+          ],
+          50 / 3963.2 // 50 mile (3963.2 = equatorial radius of the earth)
+          ]
+          ])->paginate(12);
+
+
+          $locations2  = Postcode::raw()->find(array('location_coordinates' => array('$near' => array($longitude, $latitude))));
+         */
+
+
+
+
+
         /*
           $locations  = DB::collection('postcodes')
 

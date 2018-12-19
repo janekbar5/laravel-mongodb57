@@ -250,13 +250,13 @@ $(document).ready(function () {
                             
                             <div class="form-group">
                                 <strong>Lat:</strong>                                
-                                <input type="text" class="form-control" id="lat" name="lat" value="{{ $book['location']['coordinates']['0'] }}" placeholder="Diaplayed name">
+                                <input type="text" class="form-control" id="lat" name="lat" value="{{ $book['location']['1'] }}" placeholder="Diaplayed name">
                                  <span class="text-danger"><strong id="title-error"></strong></span>
                             </div>
                             
                             <div class="form-group">
                                 <strong>Lng:</strong>                                
-                                <input type="text" class="form-control" id="lng" name="lng" value="{{ $book['location']['coordinates']['1'] }}" placeholder="Diaplayed name">
+                                <input type="text" class="form-control" id="lng" name="lng" value="{{ $book['location']['0'] }}" placeholder="Diaplayed name">
                                  <span class="text-danger"><strong id="title-error"></strong></span>
                             </div>
 

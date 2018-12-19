@@ -175,7 +175,8 @@ class BooksController extends Controller
 
         if ($formValidator->passes()) {
             $book = Book::find($request->input('id'));
-            $book->location = ['type' => 'Point', 'coordinates' => [$request->input('lng'), $request->input('lat')]];
+            //$book->location = ['type' => 'Point', 'coordinates' => [floatval($request->input('lng')), floatval($request->input('lat'))]];
+            $book->location =  [floatval($request->input('lng')), floatval($request->input('lat'))];
             $book->title = $request->input('title');
             $book->save($request->all());   
             

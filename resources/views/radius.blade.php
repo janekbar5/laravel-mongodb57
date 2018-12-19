@@ -16,8 +16,12 @@
 				<br><br>
                                 
 
-				{{ dd($locations ) }}
-                               
+				
+                                @foreach ($locations as $loc)	
+                                
+                                {{ $loc->title }}<br>
+                                
+                                @endforeach	
                              
  
                 <div class="card-body">
