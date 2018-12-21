@@ -62,57 +62,20 @@ class HomeController extends Controller {
                         )->orderBy('distance', 'asc');
     }
 
-    public function radiusSearch() {
-
-        //ok
-        //$locations = DB::collection('postcodes')->where('Location2', 'Cunningham')->get();
-        //ok
-        /*
-          $locations = DB::collection('postcodes')
-          //->where('Location2', 'Cunningham')
-          ->having('Location2', 'LIKE', '%'.$radius.'%')
-          ->get();
-         */
-
-
-        $latitude = 50.730733;
-        $longitude = -1.860970;
-
-        /*
-          $locations = Postcode::where('location', 'near', [
-          '$geometry' => [
-          'type' => 'Point',
-          'coordinates' => [-1.860970, 50.730733]
-          ],
-          '$maxDistance' => 5,
-          ])->paginate(5);
-         */
-
-
-
-        /*
-          $locations2 = Book::where('location', 'geoWithin', [
-          '$center' => [
-          'type' => 'Point',
-          'coordinates' => [-1.850970,50.730733],
-          ],
-          '$maxDistance' => 5,
-          ])->get();
-
-         */
-
+    public function radiusSearch($radius) {
+             
        //10000 Bournemouth + Poole
        //15000 Bournemouth + Poole + Ringwood
        //32000 Bournemouth + Poole + Ringwood + Beaulieu,
        //45000 Bournemouth + Poole + Ringwood + Beaulieu + Southampton ,
         
-       $radius = 65000;
+       
        $locations = Book::where('location', 'near', [
 	'$geometry' => [
         'type' => 'Point',
 	    'coordinates' => [-1.879586,50.742362 ],
             ],
-            '$maxDistance' => $radius,
+            '$maxDistance' => (integer)$radius*1000,
         ])->get();
 
 

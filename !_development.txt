@@ -10,7 +10,13 @@
 
 
 ///////////////////////////////todo:
--instant search
+autocomplete instant search live search
+https://itsolutionstuff.com/post/laravel-5-autocomplete-using-bootstrap-typeahead-js-example-with-demoexample.html
+
+
+
+
+
 https://appdividend.com/2018/04/27/laravel-typeahead-search-tutorial-with-example/
 https://scotch.io/tutorials/build-search-functionality-with-laravel-scout-and-vue-js
 https://www.cloudways.com/blog/live-search-laravel-ajax/
