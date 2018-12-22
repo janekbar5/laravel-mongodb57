@@ -10,37 +10,37 @@
 
 
 
-    <style>
-        .delete-img{
-            width:30px;
-            position:absolute;
-            top:0px;
-            left:70px;
+<style>
+    .delete-img{
+        width:30px;
+        position:absolute;
+        top:0px;
+        left:70px;
 
-            cursor:pointer;
-            z-index: 1000;
-        }
-        #gallery-images ul li {
-            position:relative;
-            list-style:none;
-            width:auto;
-            float:left;
-            border:solid 1px red;
-        }
+        cursor:pointer;
+        z-index: 1000;
+    }
+    #gallery-images ul li {
+        position:relative;
+        list-style:none;
+        width:auto;
+        float:left;
+        border:solid 1px red;
+    }
 
-        #gallery-images ul li a img{
-            float:left;
-            width:100px;
-        }
+    #gallery-images ul li a img{
+        float:left;
+        width:100px;
+    }
 
-        #gallery-images ul li a:hover{
-            cursor: move;
-        }
-    </style>
+    #gallery-images ul li a:hover{
+        cursor: move;
+    }
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-    
+
 
 <script>
 
@@ -141,11 +141,11 @@ $(document).ready(function () {
 
 });
 
-    </script>	
-    
-    
-    
-    
+</script>	
+
+
+
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -162,14 +162,14 @@ $(document).ready(function () {
         </ol>
     </section>
 
-    
+    <!--
     <div class="flash-message">
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
       @if(Session::has('alert-' . $msg))
       <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
       @endif
     @endforeach
-  </div> 
+  </div> -->
 
     <section class="content">
         <div class="row">
@@ -186,17 +186,17 @@ $(document).ready(function () {
 
 
                     <div class="col-md-12">
-
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
+                        <!--
+                                                @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                                @endif-->
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -230,8 +230,12 @@ $(document).ready(function () {
                         <br><br>
                     </div>
 
+
+
+
+
                     <!--<form role="form" method="POST" action="{{ route('backend.books.update',$book->id) }}" enctype="multipart/form-data">-->
-                        <form method="POST" id="Register" enctype="multipart/form-data">
+                    <form method="POST" id="Register" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="{{ $book->id }}" class="form-control" >
                         {{ csrf_field() }}
 
@@ -239,31 +243,33 @@ $(document).ready(function () {
 
                         <div class="box-body">
 
-
+                            <div class="form-group">
+                                <input type="text" id="searchname" placeholder="Enter name" class="form-control"/> 
+                            </div>
 
                             <div class="form-group">
                                 <strong>Title:</strong>                                
                                 <input type="text" class="form-control" id="title" name="title" value="{{ $book->title }}" placeholder="Diaplayed name">
-                                 <span class="text-danger"><strong id="title-error"></strong></span>
+                                <span class="text-danger"><strong id="title-error"></strong></span>
                             </div>
 
-                            
+
                             <div class="form-group">
                                 <strong>Lat:</strong>                                
                                 <input type="text" class="form-control" id="lat" name="lat" value="{{ $book['location']['1'] }}" placeholder="Diaplayed name">
-                                 <span class="text-danger"><strong id="title-error"></strong></span>
+                                <span class="text-danger"><strong id="title-error"></strong></span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <strong>Lng:</strong>                                
                                 <input type="text" class="form-control" id="lng" name="lng" value="{{ $book['location']['0'] }}" placeholder="Diaplayed name">
-                                 <span class="text-danger"><strong id="title-error"></strong></span>
+                                <span class="text-danger"><strong id="title-error"></strong></span>
                             </div>
 
 
                             <div class="form-group">
                                 <strong>Description:</strong>
-                               <textarea class="form-control" style="height:150px" id="description" name="description" placeholder="Description">{{ $book->description }}</textarea>
+                                <textarea class="form-control" style="height:150px" id="description" name="description" placeholder="Description">{{ $book->description }}</textarea>
                                 <span class="text-danger"><strong id="description-error"></strong></span>
                             </div>
 
@@ -276,9 +282,9 @@ $(document).ready(function () {
                                 <span class="text-danger"><strong id="tags-error"></strong></span>
                             </div>
 
-                            
-                            
-                            
+
+
+
                             <div class="form-group">
                                 <label for="City">Choose Make</label>
                                 <select name="make_id" id="make_id" class="form-control">
@@ -292,49 +298,51 @@ $(document).ready(function () {
                                 </select>
                                 <span class="text-danger"><strong id="make_id-error"></strong></span>
                             </div> 
-                            
-                            
-                            
-                            
-                            
-                        @if (isset($models))
-                        <div class="form-group">
-                        <label for="City">Choose Model</label>
-                        <select name="model_id" id="model_id" class="form-control">  
-                          <option value ="">Choose Model</option>  
-                            @foreach ($models as $model)
-                            <option value ="{{$model->id}}" @if ($model->id === $book->model_id) selected="selected" @endif>{{ $model->title }} </option>                             
-                            @endforeach
-                         </select>
-                        
-                        <span class="text-danger"><strong id="model_id-error"></strong></span>
-                      </div>     
-                        @else
-                         <div class="form-group" id="model_id">
-                             
-                             <span class="text-danger"><strong id="model_id-error"></strong></span>
-                         </div>    
-                        @endif
-		
-						
-                        
-		      
-                           
 
 
-                           <div class="form-group">
-                        <label for="City">Choose Category</label>
-                        <select name="category_id" class="form-control">
 
-                            @if (isset($categories))
-                            <option value ="">Choose Category</option>  
-                            @foreach ($categories as $cat)
-                            <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
-                            @endforeach
+
+
+                            @if (isset($models))
+                            <div class="form-group">
+                                <label for="City">Choose Model</label>
+                                <select name="model_id" id="model_id" class="form-control">  
+                                    <option value ="">Choose Model</option>  
+                                    @foreach ($models as $model)
+                                    <option value ="{{$model->id}}" @if ($model->id === $book->model_id) selected="selected" @endif>{{ $model->title }} </option>                             
+                                    @endforeach
+                                </select>
+
+                                <span class="text-danger"><strong id="model_id-error"></strong></span>
+                            </div>     
+                            @else
+                            <div class="form-group" id="model_id">
+
+                                <span class="text-danger"><strong id="model_id-error"></strong></span>
+                            </div>    
                             @endif
-                        </select>
-                        <span class="text-danger"><strong id="category_id-error"></strong></span>
-                    </div>  
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <label for="City">Choose Category</label>
+                                <select name="category_id" class="form-control">
+
+                                    @if (isset($categories))
+                                    <option value ="">Choose Category</option>  
+                                    @foreach ($categories as $cat)
+                                    <option value ="{{$cat->id}}" @if ($cat->id === $book->category_id) selected="selected" @endif>{{ $cat->name }} </option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                                <span class="text-danger"><strong id="category_id-error"></strong></span>
+                            </div>  
+
+
 
 
                         </div>
@@ -360,22 +368,28 @@ $(document).ready(function () {
     </section>
 
 
-        
-@include('backend.partial.footer')
-@include('backend.partial.rightsidebar')
 
-<!-- jQuery 3 -->
-<script src="{{ asset('backend/bower_components/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('backend/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('backend/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-<script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
-<!--
-<script src="{{ asset('backend/plugins/iCheck/icheck.min.js') }}"></script>
-<script src="{{ asset('backend/bower_components/fastclick/lib/fastclick.js') }}"></script>
-<script src="{{ asset('backend/dist/js/demo.js') }}"></script>
--->
+    @include('backend.partial.footer')
+    @include('backend.partial.rightsidebar')
 
-@include('backend.partial.formjavascripts')
+    <!-- jQuery 3 -->
+    <!--<script src="{{ asset('backend/bower_components/jquery/dist/jquery.min.js') }}"></script>-->
+     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="{{ asset('backend/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('backend/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
+    <!--
+    <script src="{{ asset('backend/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('backend/bower_components/fastclick/lib/fastclick.js') }}"></script>
+    <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
+    -->
 
+    @include('backend.partial.formjavascripts')
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+   
     
-@endsection
+
+    @endsection

@@ -1,4 +1,18 @@
+
 <script>
+    ////////////////////////////////////////////autocomplete 
+$(function() {
+        $("#searchname").autocomplete({
+            source: "/books/autocomplete",
+            minLength: 1,
+            select: function( event, ui ) {
+            $('#response').val(ui.item.id);
+            }
+        });
+    });
+    
+    
+    
 ////////////////////////////////////////////Selct 2 Tags    
 $(function () {
     //Initialize Select2 Elements
@@ -100,3 +114,4 @@ $('#submitForm2').on('click', function(){
         });
     });
 </script>
+

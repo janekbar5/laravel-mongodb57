@@ -37,6 +37,7 @@ Route::get('edit/{id}','UserController@edit')->name('user.edit');
 
 
 ////////////////////////
+Route::get('books/autocomplete','BooksController@autocomplete')->name('backend.books.autocomplete');
 Route::get('books/index', 'BooksController@index')->name('backend.books.index');
 Route::get('books/create', 'BooksController@create')->name('backend.books.create');
 Route::post('books/store', 'BooksController@store')->name('backend.books.store');
